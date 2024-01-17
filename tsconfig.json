@@ -1,0 +1,4 @@
+{
+  "extends": "@tsconfig/recommended/tsconfig.json",
+  "exclude": ["lib", "packages/create-react-app/templates"]
+}

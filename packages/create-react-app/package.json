@@ -1,0 +1,23 @@
+{
+  "name": "create-react-app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "lib/index.js",
+  "bin": "bin/cli.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "transpile": "babel --extensions .ts,.tsx src --out-dir lib --ignore '**/__tests__/**' --source-maps --delete-dir-on-start"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/cli": "7.23.4",
+    "@babel/core": "7.23.7",
+    "@babel/preset-env": "7.23.8",
+    "@babel/preset-typescript": "^7.23.3",
+    "@types/node": "^20.11.4"
+  },
+  "dependencies": {
+    "prompts": "^2.4.2"
+  }
+}

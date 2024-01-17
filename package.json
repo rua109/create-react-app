@@ -1,0 +1,11 @@
+{
+  "name": "root",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
+  "devDependencies": {
+    "@tsconfig/recommended": "^1.0.3",
+    "lerna": "^8.0.2"
+  }
+}
