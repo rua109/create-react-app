@@ -1,4 +1,5 @@
 export interface EjsOptions {
-  reactVersion?: "17" | "18";
+  name: string;
   transpiler?: "babel" | "swc";
+  reactVersion?: "17" | "18";
 }

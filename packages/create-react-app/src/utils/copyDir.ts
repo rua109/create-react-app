@@ -11,7 +11,7 @@ const BINARIES = [
 export default function copyDir(
   source: string,
   destination: string,
-  options: EjsOptions = {}
+  options: EjsOptions
 ) {
   // Create destination directory if it doesn't exist
   if (!fs.existsSync(destination)) {
@@ -29,13 +29,13 @@ export default function copyDir(
     // Check if the current item is a file or a directory
     if (fs.statSync(sourcePath).isDirectory()) {
       // If it's a directory, recursively copy it
-      copyDir(sourcePath, destinationPath);
+      copyDir(sourcePath, destinationPath, options);
     } else if (!BINARIES.some((r) => r.test(file))) {
       // Read the content of the file
       let content = fs.readFileSync(sourcePath, "utf-8");
 
       // apply ejs transforms
-      content = ejs.render(content, options);
+      content = ejs.render(content, { options });
 
       // Write the transformed content to the destination
       fs.writeFileSync(destinationPath, content);
@@ -43,6 +43,4 @@ export default function copyDir(
       fs.copyFileSync(sourcePath, destinationPath);
     }
   });
-
-  console.log(`Contents of ${source} copied to ${destination}`);
 }
