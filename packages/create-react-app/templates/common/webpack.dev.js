@@ -21,7 +21,9 @@ module.exports = merge(common, {
         use: [
           "style-loader", //3. Inject styles into DOM
           "css-loader", //2. Turns css into commonjs
+          <%_ if (options.usesTailwind) { -%>
           "postcss-loader", //1. Turns sass into css
+          <%_ } -%>
         ],
       },
     ],

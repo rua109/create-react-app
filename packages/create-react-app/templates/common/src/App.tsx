@@ -1,7 +1,9 @@
 import React from "react";
 
 import logo from "./logo.svg";
+<%_ if (options.usesTailwind) { -%>
 import "./tailwind.css";
+<%_ } -%>
 import "./App.css";
 
 /**
@@ -23,7 +25,9 @@ function App() {
         >
           Learn React
         </a>
+        <%_ if (options.usesTailwind) { -%>
         <h1 className="text-3xl font-thin underline">Hello world!</h1>
+        <%_ } -%>
       </header>
     </div>
   );

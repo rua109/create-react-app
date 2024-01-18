@@ -38,6 +38,12 @@ const questions = [
     message: "Use Storybooks?",
     initial: false,
   },
+  {
+    type: "confirm",
+    name: "tailwind",
+    message: "Use Tailwind?",
+    initial: false,
+  },
 ];
 
 const COMMON_FILES = path.resolve(__dirname, "../templates/common");
@@ -84,7 +90,9 @@ const folder = path.resolve(process.cwd(), ".");
   if (esjOptions.usesStorybook) {
     copyDir(CONFIG_STORYBOOK, folder, esjOptions);
   }
-  copyDir(CONFIG_TAILWIND, folder, esjOptions);
+  if (esjOptions.usesTailwind) {
+    copyDir(CONFIG_TAILWIND, folder, esjOptions);
+  }
 
   //   console.log(`Installing packages. This may take a couple of minutes.
   // `);
