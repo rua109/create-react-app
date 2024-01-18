@@ -5,5 +5,6 @@ export default function buildEsjOptions(prompts: any): EjsOptions {
     name: prompts.name,
     transpiler: prompts.transpiler,
     reactVersion: prompts.reactVersion,
+    usesStorybook: prompts.storybook,
   };
 }

@@ -32,6 +32,12 @@ const questions = [
       { title: "swc", value: "swc" },
     ],
   },
+  {
+    type: "confirm",
+    name: "storybook",
+    message: "Use Storybooks?",
+    initial: false,
+  },
 ];
 
 const COMMON_FILES = path.resolve(__dirname, "../templates/common");
@@ -75,7 +81,9 @@ const folder = path.resolve(process.cwd(), ".");
   copyDir(CONFIG_SWC, folder, esjOptions);
   copyDir(CONFIG_ESLINT, folder, esjOptions);
   copyDir(CONFIG_JEST, folder, esjOptions);
-  copyDir(CONFIG_STORYBOOK, folder, esjOptions);
+  if (esjOptions.usesStorybook) {
+    copyDir(CONFIG_STORYBOOK, folder, esjOptions);
+  }
   copyDir(CONFIG_TAILWIND, folder, esjOptions);
 
   //   console.log(`Installing packages. This may take a couple of minutes.
