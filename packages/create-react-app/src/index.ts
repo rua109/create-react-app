@@ -125,6 +125,8 @@ const folder = path.resolve(process.cwd(), repoName);
     copyDirApplyingEjsTransforms(CONFIG_TAILWIND, folder, esjOptions);
   }
 
+  return;
+
   console.log(`Installing packages. This may take a couple of minutes.\n`);
   const installedDeps = runCommand(CMD_INSTALL_DEPS);
   if (!installedDeps) {
