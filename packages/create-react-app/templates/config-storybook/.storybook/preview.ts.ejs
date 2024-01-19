@@ -1,7 +1,9 @@
 import type { Preview, ReactRenderer } from '@storybook/react';
 import { withThemeByClassName } from '@storybook/addon-themes';
 import './preview.css';
+<%_ if (options.usesTailwind) { -%>
 import '../src/tailwind.css';
+<%_ } -%>
 
 const preview: Preview = {
   parameters: {

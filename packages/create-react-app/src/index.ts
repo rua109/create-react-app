@@ -22,6 +22,7 @@ const questions = [
       { title: "react17", value: "17" },
       { title: "react18", value: "18" },
     ],
+    initial: 1,
   },
   {
     type: "select",
