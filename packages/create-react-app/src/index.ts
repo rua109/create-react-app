@@ -46,6 +46,12 @@ const questions = [
     message: "Use Tailwind?",
     initial: false,
   },
+  {
+    type: "confirm",
+    name: "linter",
+    message: "Use Linter + Prettier?",
+    initial: true,
+  },
 ];
 
 const COMMON_FILES = path.resolve(__dirname, "../templates/common");
@@ -88,7 +94,9 @@ const folder = path.resolve(process.cwd(), ".");
   } else {
     copyDirApplyingEjsTransforms(CONFIG_BABEL, folder, esjOptions);
   }
-  copyDirApplyingEjsTransforms(CONFIG_ESLINT, folder, esjOptions);
+  if (esjOptions.usesLinter) {
+    copyDirApplyingEjsTransforms(CONFIG_ESLINT, folder, esjOptions);
+  }
   copyDirApplyingEjsTransforms(CONFIG_JEST, folder, esjOptions);
   if (esjOptions.usesStorybook) {
     copyDirApplyingEjsTransforms(CONFIG_STORYBOOK, folder, esjOptions);
