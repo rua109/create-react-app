@@ -13,7 +13,11 @@ module.exports = {
         test: /\.(ts|tsx|js|jsx)$/,
         exclude: /node_modules/,
         use: {
+          <%_ if (options.transpiler === "swc") { -%>
           loader: "swc-loader",
+          <%_ } else { -%>
+          loader: "babel-loader",
+          <%_ } -%>
         },
       },
       {

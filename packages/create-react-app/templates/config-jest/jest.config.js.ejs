@@ -1,8 +1,10 @@
 module.exports = {
   setupFiles: ['./jest-setup.js'],
+  <%_ if (options.transpiler === "swc") { -%>
   transform: {
     '^.+\\.(t|j)sx?$': '@swc/jest',
   },
+  <%_ } -%>
   moduleNameMapper: {
     '.+\\.(css|styl|less|sass|scss|png|jpg|ttf|woff|woff2)$':
       'identity-obj-proxy',

@@ -32,6 +32,7 @@ const questions = [
       { title: "babel", value: "babel" },
       { title: "swc", value: "swc" },
     ],
+    initial: 1,
   },
   {
     type: "confirm",
@@ -49,6 +50,7 @@ const questions = [
 
 const COMMON_FILES = path.resolve(__dirname, "../templates/common");
 const CONFIG_SWC = path.resolve(__dirname, "../templates/config-swc");
+const CONFIG_BABEL = path.resolve(__dirname, "../templates/config-babel");
 const CONFIG_ESLINT = path.resolve(__dirname, "../templates/config-eslint");
 const CONFIG_JEST = path.resolve(__dirname, "../templates/config-jest");
 const CONFIG_STORYBOOK = path.resolve(
@@ -85,7 +87,11 @@ const folder = path.resolve(process.cwd(), ".");
 
   console.log(`Creating a new React app ${repoName}`);
   copyDirApplyingEjsTransforms(COMMON_FILES, folder, esjOptions);
-  copyDirApplyingEjsTransforms(CONFIG_SWC, folder, esjOptions);
+  if (esjOptions.transpiler === "swc") {
+    copyDirApplyingEjsTransforms(CONFIG_SWC, folder, esjOptions);
+  } else {
+    copyDirApplyingEjsTransforms(CONFIG_BABEL, folder, esjOptions);
+  }
   copyDirApplyingEjsTransforms(CONFIG_ESLINT, folder, esjOptions);
   copyDirApplyingEjsTransforms(CONFIG_JEST, folder, esjOptions);
   if (esjOptions.usesStorybook) {
