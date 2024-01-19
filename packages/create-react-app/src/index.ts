@@ -52,6 +52,12 @@ const questions = [
     message: "Use Linter + Prettier?",
     initial: true,
   },
+  {
+    type: "confirm",
+    name: "jest",
+    message: "Use Jest?",
+    initial: true,
+  },
 ];
 
 const COMMON_FILES = path.resolve(__dirname, "../templates/common");
@@ -62,6 +68,10 @@ const CONFIG_JEST = path.resolve(__dirname, "../templates/config-jest");
 const CONFIG_STORYBOOK = path.resolve(
   __dirname,
   "../templates/config-storybook"
+);
+const CONFIG_JEST_STORYBOOK = path.resolve(
+  __dirname,
+  "../templates/config-jest-storybook"
 );
 const CONFIG_TAILWIND = path.resolve(__dirname, "../templates/config-tailwind");
 
@@ -97,9 +107,14 @@ const folder = path.resolve(process.cwd(), ".");
   if (esjOptions.usesLinter) {
     copyDirApplyingEjsTransforms(CONFIG_ESLINT, folder, esjOptions);
   }
-  copyDirApplyingEjsTransforms(CONFIG_JEST, folder, esjOptions);
+  if (esjOptions.usesJest) {
+    copyDirApplyingEjsTransforms(CONFIG_JEST, folder, esjOptions);
+  }
   if (esjOptions.usesStorybook) {
     copyDirApplyingEjsTransforms(CONFIG_STORYBOOK, folder, esjOptions);
+  }
+  if (esjOptions.usesJest && esjOptions.usesStorybook) {
+    copyDirApplyingEjsTransforms(CONFIG_JEST_STORYBOOK, folder, esjOptions);
   }
   if (esjOptions.usesTailwind) {
     copyDirApplyingEjsTransforms(CONFIG_TAILWIND, folder, esjOptions);
