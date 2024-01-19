@@ -1,5 +1,5 @@
 // const { copyDir } = require("./utils/copyDir");
-import copyDir from "./utils/copyDir";
+import copyDirApplyingEjsTransforms from "./utils/copyDirApplyingEjsTransforms";
 import runCommand from "./utils/runCommand";
 import buildEsjOptions from "./utils/buildEsjOptions";
 const path = require("path");
@@ -83,15 +83,15 @@ const folder = path.resolve(process.cwd(), ".");
   console.log("esjOptions", esjOptions);
 
   console.log(`Creating a new React app ${repoName}`);
-  copyDir(COMMON_FILES, folder, esjOptions);
-  copyDir(CONFIG_SWC, folder, esjOptions);
-  copyDir(CONFIG_ESLINT, folder, esjOptions);
-  copyDir(CONFIG_JEST, folder, esjOptions);
+  copyDirApplyingEjsTransforms(COMMON_FILES, folder, esjOptions);
+  copyDirApplyingEjsTransforms(CONFIG_SWC, folder, esjOptions);
+  copyDirApplyingEjsTransforms(CONFIG_ESLINT, folder, esjOptions);
+  copyDirApplyingEjsTransforms(CONFIG_JEST, folder, esjOptions);
   if (esjOptions.usesStorybook) {
-    copyDir(CONFIG_STORYBOOK, folder, esjOptions);
+    copyDirApplyingEjsTransforms(CONFIG_STORYBOOK, folder, esjOptions);
   }
   if (esjOptions.usesTailwind) {
-    copyDir(CONFIG_TAILWIND, folder, esjOptions);
+    copyDirApplyingEjsTransforms(CONFIG_TAILWIND, folder, esjOptions);
   }
 
   //   console.log(`Installing packages. This may take a couple of minutes.

@@ -8,7 +8,7 @@ const BINARIES = [
   /\$\.yarn(?![a-z])/,
 ];
 
-export default function copyDir(
+export default function copyDirApplyingEjsTransforms(
   source: string,
   destination: string,
   options: EjsOptions
@@ -24,18 +24,23 @@ export default function copyDir(
   // Loop through each file in the source directory
   files.forEach((file: any) => {
     const sourcePath = path.join(source, file);
-    const destinationPath = path.join(destination, file);
+    let destinationPath = path.join(destination, file);
+    const isEjsFile = path.extname(file) === ".ejs"; // Check if the file has a .ejs extension
 
     // Check if the current item is a file or a directory
     if (fs.statSync(sourcePath).isDirectory()) {
       // If it's a directory, recursively copy it
-      copyDir(sourcePath, destinationPath, options);
+      copyDirApplyingEjsTransforms(sourcePath, destinationPath, options);
     } else if (!BINARIES.some((r) => r.test(file))) {
       // Read the content of the file
       let content = fs.readFileSync(sourcePath, "utf-8");
 
-      // apply ejs transforms
-      content = ejs.render(content, { options });
+      if (isEjsFile) {
+        // apply ejs transforms
+        content = ejs.render(content, { options });
+        // Remove the .ejs extension
+        destinationPath = destinationPath.replace(/\.ejs$/, "");
+      }
 
       // Write the transformed content to the destination
       fs.writeFileSync(destinationPath, content);
