@@ -1,5 +1,6 @@
 // const { copyDir } = require("./utils/copyDir");
 import { switchToBlueColor, switchToDefaultColor } from "./const";
+import createAndSwitchToDirectory from "./utils/createAndSwitchToDirectory";
 import copyDirApplyingEjsTransforms from "./utils/copyDirApplyingEjsTransforms";
 import runCommand from "./utils/runCommand";
 import buildEsjOptions from "./utils/buildEsjOptions";
@@ -100,6 +101,7 @@ const folder = path.resolve(process.cwd(), ".");
 
   console.log(`\n\n`);
   console.log(`Creating a new React app ${repoName}\n`);
+  createAndSwitchToDirectory(repoName);
 
   copyDirApplyingEjsTransforms(COMMON_FILES, folder, esjOptions);
   if (esjOptions.transpiler === "swc") {
