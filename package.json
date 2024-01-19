@@ -6,7 +6,7 @@
   ],
   "scripts": {
     "prepare": "lerna run prepare",
-    "publish": "lerna publish"
+    "publish": "npm run prepare && lerna publish"
   },
   "devDependencies": {
     "@tsconfig/recommended": "^1.0.3",
