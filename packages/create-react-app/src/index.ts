@@ -78,7 +78,8 @@ const CONFIG_JEST_STORYBOOK = path.resolve(
 const CONFIG_TAILWIND = path.resolve(__dirname, "../templates/config-tailwind");
 
 const CMD_INSTALL_DEPS = `npm install`;
-const initGitCommand = `rm -rf .git && git init && git add . && git commit -m "Initialize project using Create React app"`;
+const CMD_INIT_GIT = `rm -rf .git && git init && git add . && git commit -m "Initialize project using Create React app"`;
+const CMD_CD = `cd ${repoName}`;
 
 const folder = path.resolve(process.cwd(), repoName);
 
@@ -131,7 +132,7 @@ const folder = path.resolve(process.cwd(), repoName);
     process.exit(-1);
   }
 
-  const initializedGit = runCommand(initGitCommand);
+  const initializedGit = runCommand(CMD_INIT_GIT);
   if (!initializedGit) {
     process.exit(-1);
   }
@@ -166,4 +167,6 @@ const folder = path.resolve(process.cwd(), repoName);
       `${switchToBlueColor} npm run lint ${switchToDefaultColor}\n Runs linter\n`
     );
   }
+
+  runCommand(CMD_CD);
 })();
