@@ -80,7 +80,7 @@ const CONFIG_TAILWIND = path.resolve(__dirname, "../templates/config-tailwind");
 const CMD_INSTALL_DEPS = `npm install`;
 const initGitCommand = `rm -rf .git && git init && git add . && git commit -m "Initialize project using Create React app"`;
 
-const folder = path.resolve(process.cwd(), ".");
+const folder = path.resolve(process.cwd(), repoName);
 
 (async () => {
   let cancelled = false;
