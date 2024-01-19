@@ -131,7 +131,7 @@ const folder = path.resolve(process.cwd(), repoName);
     process.exit(-1);
   }
 
-  const initializedGit = runCommand(initGitCommand, { mute: true });
+  const initializedGit = runCommand(initGitCommand);
   if (!initializedGit) {
     process.exit(-1);
   }
