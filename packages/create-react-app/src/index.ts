@@ -1,4 +1,5 @@
 // const { copyDir } = require("./utils/copyDir");
+import { switchToBlueColor, switchToDefaultColor } from "./const";
 import copyDirApplyingEjsTransforms from "./utils/copyDirApplyingEjsTransforms";
 import runCommand from "./utils/runCommand";
 import buildEsjOptions from "./utils/buildEsjOptions";
@@ -76,7 +77,7 @@ const CONFIG_JEST_STORYBOOK = path.resolve(
 const CONFIG_TAILWIND = path.resolve(__dirname, "../templates/config-tailwind");
 
 const CMD_INSTALL_DEPS = `npm install`;
-const initGitCommand = `rm -rf .git && git init && git add . && git commit -m "Initialize project using Create React app swc"`;
+const initGitCommand = `rm -rf .git && git init && git add . && git commit -m "Initialize project using Create React app"`;
 
 const folder = path.resolve(process.cwd(), ".");
 
@@ -97,7 +98,9 @@ const folder = path.resolve(process.cwd(), ".");
 
   const esjOptions = buildEsjOptions(response);
 
-  console.log(`Creating a new React app ${repoName}`);
+  console.log(`\n\n`);
+  console.log(`Creating a new React app ${repoName}\n`);
+
   copyDirApplyingEjsTransforms(COMMON_FILES, folder, esjOptions);
   if (esjOptions.transpiler === "swc") {
     copyDirApplyingEjsTransforms(CONFIG_SWC, folder, esjOptions);
@@ -120,10 +123,45 @@ const folder = path.resolve(process.cwd(), ".");
     copyDirApplyingEjsTransforms(CONFIG_TAILWIND, folder, esjOptions);
   }
 
-  //   console.log(`Installing packages. This may take a couple of minutes.
-  // `);
-  //   const installedDeps = runCommand(CMD_INSTALL_DEPS);
-  //   if (!installedDeps) {
-  //     process.exit(-1);
-  //   }
+  console.log(`Installing packages. This may take a couple of minutes.\n`);
+  const installedDeps = runCommand(CMD_INSTALL_DEPS);
+  if (!installedDeps) {
+    process.exit(-1);
+  }
+
+  const initializedGit = runCommand(initGitCommand, { mute: true });
+  if (!initializedGit) {
+    process.exit(-1);
+  }
+  console.log(`Created git commit.\n`);
+
+  console.log(`Success! created ${repoName}\n`);
+
+  console.log(`Inside the directory you can run several commands.\n`);
+
+  console.log(
+    `${switchToBlueColor} npm run start ${switchToDefaultColor}\n Starts the development server\n`
+  );
+
+  console.log(
+    `${switchToBlueColor} npm run build ${switchToDefaultColor}\n Creates a build\n`
+  );
+
+  if (esjOptions.usesStorybook) {
+    console.log(
+      `${switchToBlueColor} npm run storybook ${switchToDefaultColor}\n Starts the storybook \n`
+    );
+  }
+
+  if (esjOptions.usesJest) {
+    console.log(
+      `${switchToBlueColor} npm run test ${switchToDefaultColor}\n Runs the jest tests\n`
+    );
+  }
+
+  if (esjOptions.usesLinter) {
+    console.log(
+      `${switchToBlueColor} npm run lint ${switchToDefaultColor}\n Runs linter\n`
+    );
+  }
 })();
