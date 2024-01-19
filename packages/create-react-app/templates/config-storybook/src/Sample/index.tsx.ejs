@@ -4,7 +4,11 @@ import React from 'react';
  * Sample
  */
 export default function Sample() {
+  <%_ if (options.usesTailwind) { -%>
   return (
-    <div<% if (options.usesTailwind) { %> className="text-2xl font-thin dark:text-red-600"<%_ } -%>>Hello worlds</div>
+    <div className="text-2xl font-thin dark:text-red-600">Hello worlds</div>
   );
+  <%_ } else { -%>
+  return <div>Hello worlds</div>;
+  <%_ } -%>
 }
