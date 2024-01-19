@@ -1,33 +1,20 @@
 {
   "name": "<%= options.name %>",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "",
   "main": "index.js",
-  "directories": {
-    "doc": "docs"
-  },
   "scripts": {
     "start": "webpack-dev-server  --config webpack.dev.js --open",
     "build": "webpack --config webpack.prod.js",
-    "test": "jest",
-    "lint": "tsc --noEmit && eslint . --ext .js,.jsx,.ts,.tsx",
     <%_ if (options.usesStorybook) { -%>
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
     <%_ } -%>
-    "pub": "npm publish --access=public"
+    "test": "jest",
+    "lint": "tsc --noEmit && eslint . --ext .js,.jsx,.ts,.tsx"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/rua109/create-react-app-swc.git"
-  },
-  "author": "rua109",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/rua109/create-react-app-swc/issues"
-  },
-  "homepage": "https://github.com/rua109/create-react-app-swc#readme",
-  "bin": "./bin/cli.js",
+  "author": "",
+  "license": "MIT",
   "devDependencies": {
     <%_ if (options.usesStorybook) { -%>
     "@storybook/addon-essentials": "7.6.9",
@@ -60,8 +47,10 @@
     "@testing-library/jest-dom": "6.2.0",
     <%_ if (options.reactVersion === "18") { -%>
     "@testing-library/react": "14.1.2",
+    "react-test-renderer": "18.2.0",
     <%_ } else { -%>
     "@testing-library/react": "12.1.5",
+    "react-test-renderer": "17.0.2",
     <%_ } -%>
     "@tsconfig/create-react-app": "2.0.2",
     "@types/jest": "29.5.11",
@@ -88,11 +77,6 @@
     "jest-environment-jsdom": "29.7.0",
     "mini-css-extract-plugin": "2.7.7",
     "prettier": "3.1.1",
-    <%_ if (options.reactVersion === "18") { -%>
-    "react-test-renderer": "18.2.0",
-    <%_ } else { -%>
-    "react-test-renderer": "17.0.2",
-    <%_ } -%>
     "style-loader": "3.3.4",
     <%_ if (options.usesTailwind) { -%>
     "autoprefixer": "10.4.17",

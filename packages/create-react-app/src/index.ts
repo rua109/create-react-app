@@ -79,11 +79,7 @@ const folder = path.resolve(process.cwd(), ".");
     process.exit(-1);
   }
 
-  // user has completed all prompts
-  console.log(response); // => { value: 24 }
-
   const esjOptions = buildEsjOptions(response);
-  console.log("esjOptions", esjOptions);
 
   console.log(`Creating a new React app ${repoName}`);
   copyDirApplyingEjsTransforms(COMMON_FILES, folder, esjOptions);
