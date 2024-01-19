@@ -4,10 +4,18 @@ This is a collection of utility packages to manage creation of new React project
 
 - `create-react-app`
 
-## Building
+## Commands
 
-The project uses `lerna` to manage the various urility packages. To transpile all packages, do:
+The project uses `lerna` to manage the various utility packages in a mono repo.
+
+To transpile all packages, do:
 
 ```
 npx lerna run transpile
+```
+
+To view package dependency graph do:
+
+```
+npx nx graph
 ```
