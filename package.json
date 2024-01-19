@@ -4,6 +4,10 @@
   "workspaces": [
     "packages/*"
   ],
+  "scripts": {
+    "prepare": "lerna run prepare",
+    "publish": "npm run prepare && lerna publish"
+  },
   "devDependencies": {
     "@tsconfig/recommended": "^1.0.3",
     "lerna": "^8.0.2"

@@ -11,11 +11,17 @@ The project uses `lerna` to manage the various utility packages in a mono repo.
 To transpile all packages, do:
 
 ```
-npx lerna run transpile
+npx lerna run prepare
 ```
 
 To view package dependency graph do:
 
 ```
 npx nx graph
+```
+
+## Publishing package
+
+```
+npm run publish
 ```
