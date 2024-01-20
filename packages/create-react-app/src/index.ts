@@ -4,6 +4,10 @@ import createAndSwitchToDirectory from "./utils/createAndSwitchToDirectory";
 import copyDirApplyingEjsTransforms from "./utils/copyDirApplyingEjsTransforms";
 import runCommand from "./utils/runCommand";
 import buildEsjOptions from "./utils/buildEsjOptions";
+import ora from "ora";
+import kleur from "kleur";
+import dedent from "dedent";
+
 const path = require("path");
 const prompts = require("prompts");
 
@@ -100,11 +104,13 @@ const folder = path.resolve(process.cwd(), repoName);
 
   const esjOptions = buildEsjOptions(response);
 
-  console.log(`\n\n`);
-  console.log(`Creating a new React app ${repoName}\n`);
+  const spinner = ora().start();
+
+  spinner.text = "Copying files";
   createAndSwitchToDirectory(repoName);
 
   copyDirApplyingEjsTransforms(COMMON_FILES, folder, esjOptions);
+
   if (esjOptions.transpiler === "swc") {
     copyDirApplyingEjsTransforms(CONFIG_SWC, folder, esjOptions);
   } else {
@@ -126,47 +132,45 @@ const folder = path.resolve(process.cwd(), repoName);
     copyDirApplyingEjsTransforms(CONFIG_TAILWIND, folder, esjOptions);
   }
 
-  console.log(`Installing packages. This may take a couple of minutes.\n`);
   const installedDeps = runCommand(CMD_INSTALL_DEPS);
   if (!installedDeps) {
     process.exit(-1);
   }
 
-  const initializedGit = runCommand(CMD_INIT_GIT);
+  const initializedGit = runCommand(CMD_INIT_GIT, { mute: true });
   if (!initializedGit) {
     process.exit(-1);
   }
-  console.log(`Created git commit.\n`);
 
-  console.log(`Success! created ${repoName}\n`);
-
-  console.log(`Inside the directory you can run several commands.\n`);
-
-  console.log(
-    `${switchToBlueColor} npm run start ${switchToDefaultColor}\n Starts the development server\n`
+  spinner.succeed(
+    `Project created successfully at ${kleur.yellow(repoName)}!\n`
   );
 
   console.log(
-    `${switchToBlueColor} npm run build ${switchToDefaultColor}\n Creates a build\n`
+    dedent(`
+    Inside the directory you can run several commands.
+
+    ${kleur.blue("npm run start")}
+    Starts the development server
+
+    ${kleur.blue("npm run build")}
+    Creates a build
+    ${
+      esjOptions.usesStorybook
+        ? `\n${kleur.blue("npm run storybook")}
+    Starts the storybook\n`
+        : ""
+    }${
+      esjOptions.usesJest
+        ? `\n${kleur.blue("npm run jest")}
+    Runs the jest tests\n`
+        : ""
+    }${
+      esjOptions.usesLinter
+        ? `\n${kleur.blue("npm run lint")}
+    Runs linter\n`
+        : ""
+    }
+  `)
   );
-
-  if (esjOptions.usesStorybook) {
-    console.log(
-      `${switchToBlueColor} npm run storybook ${switchToDefaultColor}\n Starts the storybook \n`
-    );
-  }
-
-  if (esjOptions.usesJest) {
-    console.log(
-      `${switchToBlueColor} npm run test ${switchToDefaultColor}\n Runs the jest tests\n`
-    );
-  }
-
-  if (esjOptions.usesLinter) {
-    console.log(
-      `${switchToBlueColor} npm run lint ${switchToDefaultColor}\n Runs linter\n`
-    );
-  }
-
-  runCommand(CMD_CD);
 })();
