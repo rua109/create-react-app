@@ -4,7 +4,8 @@ export default function buildEsjOptions(prompts: any): EjsOptions {
   return {
     name: prompts.name,
     usesJest: prompts.jest,
-    usesLinter: prompts.linter,
+    usesLinter: prompts.linter === "none" ? false : true,
+    linterType: prompts.linter,
     transpiler: prompts.transpiler,
     reactVersion: prompts.reactVersion,
     usesTailwind: prompts.tailwind,

@@ -33,7 +33,14 @@ npm run build
 npm pack
 ```
 
-and then using the generated archive. For e.g.
+and then go to the corresponding package folder and run
+
+```
+npm pack
+```
+
+This will create a bundle archive. Copy it to another location
+and run following command to install the package
 
 ```
 npx package.tgz

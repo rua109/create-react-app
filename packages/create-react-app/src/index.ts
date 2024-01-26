@@ -53,10 +53,15 @@ const questions = [
     initial: false,
   },
   {
-    type: "confirm",
+    type: "select",
     name: "linter",
-    message: "Use Linter + Prettier?",
-    initial: true,
+    message: "Which linter would you like to use",
+    choices: [
+      { title: "standard with typescript", value: "standard" },
+      { title: "airbnb with typescript", value: "airbnb" },
+      { title: "none", value: "none" },
+    ],
+    initial: 0,
   },
   {
     type: "confirm",

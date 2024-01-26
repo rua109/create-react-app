@@ -6,7 +6,12 @@
   "extends": [
     "plugin:prettier/recommended",
     "plugin:react/recommended",
+    <%_ if (options.linterType === 'standard') { -%>
     "standard-with-typescript",
+    <%_ } -%>
+    <%_ if (options.linterType === 'airbnb') { -%>
+    "airbnb-typescript",
+    <%_ } -%>
     "plugin:jsdoc/recommended"<% if (options.usesStorybook) {%>,
     "plugin:storybook/recommended"<% } %>
   ],
@@ -16,7 +21,7 @@
     "ecmaVersion": "latest",
     "sourceType": "module"
   },
-  "plugins": ["react", "react-hooks"],
+  "plugins": ["react", "import", "react-hooks"],
   "rules": {
     "import/no-extraneous-dependencies": [
       "error",
@@ -26,6 +31,7 @@
     ],
     "import/order": ["warn", { "newlines-between": "always" }],
 
+    <%_ if (options.linterType === 'standard') { -%>
     /** begin:  Standard: https://github.com/standard/standard */
     "@typescript-eslint/semi": "off",
     "@typescript-eslint/comma-dangle": "off",
@@ -36,6 +42,23 @@
     "comma-dangle": "off",
     "space-before-function-paren": "off",
     /** end*/
+    <%_ } -%>
+
+    <%_ if (options.linterType === 'airbnb') { -%>
+    /** begin:  Airbnb */
+    "@typescript-eslint/semi": "off",
+    "@typescript-eslint/comma-dangle": "off",
+    "semi": "off",
+    "comma-dangle": "off",
+    "prettier/prettier": [
+      "error",
+      {
+        "endOfLine": "auto",
+        "semi": true
+      }
+    ],
+    /** end*/
+    <%_ } -%>
 
     "no-console": "error",
     "jsdoc/require-returns": 0,
