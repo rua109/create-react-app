@@ -3,7 +3,7 @@ import { switchToBlueColor, switchToDefaultColor } from "./const";
 import createAndSwitchToDirectory from "./utils/createAndSwitchToDirectory";
 import copyDirApplyingEjsTransforms from "./utils/copyDirApplyingEjsTransforms";
 import runCommand from "./utils/runCommand";
-import buildEsjOptions from "./utils/buildEsjOptions";
+import buildEsjOptions, { PromptsProps } from "./utils/buildEsjOptions";
 import ora from "ora";
 import kleur from "kleur";
 import dedent from "dedent";
@@ -69,6 +69,12 @@ const questions = [
     message: "Use Jest?",
     initial: true,
   },
+  {
+    type: "confirm",
+    name: "git",
+    message: "Use Git?",
+    initial: true,
+  },
 ];
 
 const COMMON_FILES = path.resolve(__dirname, "../templates/common");
@@ -100,7 +106,7 @@ const folder = path.resolve(process.cwd(), repoName);
     cancelled = true;
   };
 
-  const response = await prompts(questions, { onCancel });
+  const response: PromptsProps = await prompts(questions, { onCancel });
 
   // user has hit ctrl-C
   if (cancelled) {
@@ -142,9 +148,11 @@ const folder = path.resolve(process.cwd(), repoName);
     process.exit(-1);
   }
 
-  const initializedGit = runCommand(CMD_INIT_GIT, { mute: true });
-  if (!initializedGit) {
-    process.exit(-1);
+  if (esjOptions.usesGit) {
+    const initializedGit = runCommand(CMD_INIT_GIT, { mute: true });
+    if (!initializedGit) {
+      process.exit(-1);
+    }
   }
 
   spinner.succeed(

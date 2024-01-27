@@ -1,5 +1,6 @@
 export interface EjsOptions {
   name: string;
+  usesGit: boolean;
   usesJest: boolean;
   usesLinter: boolean;
   linterType: string;
