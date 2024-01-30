@@ -1,5 +1,5 @@
-import * as copy from "./utils/copyDirApplyingEjsTransforms";
-import * as create from "./utils/createAndSwitchToDirectory";
-import * as run from "./utils/runCommand";
+import copyDirApplyingEjsTransforms from "./utils/copyDirApplyingEjsTransforms";
+import createAndSwitchToDirectory from "./utils/createAndSwitchToDirectory";
+import runCommand from "./utils/runCommand";
 
-export { copy, create, run };
+export { runCommand, createAndSwitchToDirectory, copyDirApplyingEjsTransforms };

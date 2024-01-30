@@ -1,8 +1,8 @@
-// const { copyDir } = require("./utils/copyDir");
-import { switchToBlueColor, switchToDefaultColor } from "./const";
-import createAndSwitchToDirectory from "./utils/createAndSwitchToDirectory";
-import copyDirApplyingEjsTransforms from "./utils/copyDirApplyingEjsTransforms";
-import runCommand from "./utils/runCommand";
+import {
+  runCommand,
+  createAndSwitchToDirectory,
+  copyDirApplyingEjsTransforms,
+} from "create-react-app-utils";
 import buildEsjOptions, { PromptsProps } from "./utils/buildEsjOptions";
 import ora from "ora";
 import kleur from "kleur";
