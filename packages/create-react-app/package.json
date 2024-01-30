@@ -36,7 +36,7 @@
     "kleur": "4.1.5",
     "ora": "5.4.1",
     "prompts": "2.4.2",
-    "create-react-app-utils": "file:../create-react-app-utils"
+    "@rua109/create-react-app-utils": "*"
   },
   "gitHead": "5f18712e6975c2eebda7d3d2d4248b7afedc4c3d"
 }

@@ -2,7 +2,7 @@ import {
   runCommand,
   createAndSwitchToDirectory,
   copyDirApplyingEjsTransforms,
-} from "create-react-app-utils";
+} from "@rua109/create-react-app-utils";
 import buildEsjOptions, { PromptsProps } from "./utils/buildEsjOptions";
 import ora from "ora";
 import kleur from "kleur";
