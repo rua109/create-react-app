@@ -14,6 +14,12 @@ To build all packages, do:
 npx lerna run build
 ```
 
+To build a specific package, do:
+
+```
+npx lerna build --scope=package_name
+```
+
 ## Publishing package
 
 To publish packages to npm, do
@@ -44,4 +50,12 @@ and run following command to install the package
 
 ```
 npx package.tgz
+```
+
+## Creating a new package
+
+To create a new package, do
+
+```
+npx lerna create package-name
 ```

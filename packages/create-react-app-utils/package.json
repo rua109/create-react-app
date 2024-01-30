@@ -1,0 +1,33 @@
+{
+  "name": "@rua109/create-react-app-utils",
+  "version": "1.0.0",
+  "description": "",
+  "author": "rua109",
+  "homepage": "",
+  "license": "ISC",
+  "main": "lib/module/main.bundle.js",
+  "types": "lib/typescript/index.d.ts",
+  "files": [
+    "lib"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git@github-rua109:rua109/create-react-app.git"
+  },
+  "scripts": {
+    "tsc": "tsc --declaration",
+    "build": "webpack --config webpack.config.js && tsc --declaration"
+  },
+  "private": true,
+  "devDependencies": {
+    "@swc/cli": "^0.1.63",
+    "@swc/core": "^1.3.102",
+    "swc-loader": "^0.2.3",
+    "typescript": "^5.3.3",
+    "webpack": "^5.89.0",
+    "webpack-cli": "^5.1.4"
+  },
+  "dependencies": {
+    "ejs": "3.1.9"
+  }
+}
