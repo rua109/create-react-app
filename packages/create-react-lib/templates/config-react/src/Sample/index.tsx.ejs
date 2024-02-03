@@ -1,0 +1,16 @@
+import React from 'react';
+
+<%_ if (!options.usesTailwind) { -%>
+import styles from './styles.module.scss';
+<%_ } -%>
+/**
+ * Sample component
+ * @param {any} param - component props
+ */
+export default function Sample({ children }: any) {
+<%_ if (options.usesTailwind) { -%>
+  return <div className="bg-red-800 p-4 border rounded-md">{children}</div>;
+<%_ } else { -%>
+  return <div className={styles.container}>{children}</div>;
+<%_ } -%>
+}

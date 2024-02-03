@@ -1,0 +1,6 @@
+{
+  "presets": ["@babel/preset-typescript", <% if (options.usesReact) { -%>"@babel/preset-react", <%_ } -%>"@babel/preset-env"],
+  "plugins": [
+     ["@babel/transform-runtime"]
+  ]
+}

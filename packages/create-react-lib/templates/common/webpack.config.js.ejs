@@ -1,0 +1,76 @@
+const path = require("path");
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+<%_ if (options.usesReact) { -%>
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
+const TerserPlugin = require("terser-webpack-plugin");
+<%_ } -%>
+
+module.exports = {
+  mode: "production",
+  entry: {
+    main: "./src/index.ts",
+  },
+  resolve: {
+    extensions: [".tsx", ".ts", ".jsx", ".js", ".json"],
+  },
+  output: {
+    library: {
+      name: "<%= options.name %>",
+      type: "umd",
+    },
+    filename: "[name].bundle.js",
+    path: path.resolve(__dirname, "dist/module"),
+  },
+<%_ if (options.usesReact) { -%>
+  optimization: {
+    minimize: true,
+    minimizer: [
+      new CssMinimizerPlugin(),
+      new TerserPlugin(),
+    ],
+  },
+<%_ } -%>
+  plugins: [
+    new CleanWebpackPlugin({
+      cleanOnceBeforeBuildPatterns: [path.resolve(__dirname, 'dist')],
+    }),
+<%_ if (options.usesReact) { -%>
+    new MiniCssExtractPlugin({
+      filename: '[name].css',
+      chunkFilename: '[id].css',
+    }),
+<%_ } -%>
+  ],
+  module: {
+    rules: [
+      {
+        test: /\.(ts|tsx|js|jsx)$/,
+        exclude: /node_modules/,
+        use: {
+ <%_ if (options.transpiler === "swc") { -%>
+          loader: "swc-loader",
+<%_ } else { -%>
+          loader: "babel-loader",
+<%_ } -%>
+        },
+      },
+<%_ if (options.usesReact) { -%>
+      {
+        test: /\.(gif|jpe?g|png|svg)$/,
+        type: 'asset/resource',
+      },
+      {
+        test: /\.(css|s[ac]ss)$/i,
+        use: [
+          MiniCssExtractPlugin.loader, //3. Extract styles into a separate file
+          'css-loader', //2. Turns css into commonjs
+  <%_ if (options.usesTailwind) { -%>
+          "postcss-loader", //1. Turns sass into css
+  <%_ } -%>
+        ],
+      },
+<%_ } -%>
+    ],
+  },
+};
