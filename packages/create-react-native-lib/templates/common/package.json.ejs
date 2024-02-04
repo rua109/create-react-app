@@ -1,0 +1,55 @@
+{
+  "name": "<%= options.name %>",
+  "version": "0.0.0",
+  "description": "",
+  "main": "lib/commonjs/index.js",
+  "module": "lib/module/index.js",
+  "react-native": "src/index.tsx",
+  "types": "lib/typescript/src/index.d.ts",
+  "source": "src/index.tsx",
+  "files": [
+    "lib",
+    "src"
+  ],
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prepare": "bob build"
+  },
+  "author": "",
+  "license": "ISC",
+  "peerDependencies": {
+<%_ if (options.reactVersion === "18") { -%>
+    "react": ">=18.2.0",
+    "react-native": ">=0.73.3"
+<%_ } else { -%>
+    "react": ">=17.0.2",
+    "react-native": ">=0.68.7"
+<%_ } -%>
+  },
+  "devDependencies": {
+    "@types/jest": "29.5.12",
+    "@types/node": "20.11.16",
+<%_ if (options.reactVersion === "18") { -%>
+    "@types/react": "18.2.52",
+    @types/react-native": "0.73.0",
+    "react": "18.2.0",
+    "react-native": "0.73.3",
+<%_ } else { -%>
+    "@types/react": "17.0.74",
+    "@types/react-native": "0.68.20",
+    "react": "17.0.2",
+    "react-native": "0.68.7",
+<%_ } -%>
+    "react-native-builder-bob": "0.23.2",
+    "typescript": "5.3.3"
+  },
+  "react-native-builder-bob": {
+    "source": "src",
+    "output": "lib",
+    "targets": [
+      "commonjs",
+      "module",
+      "typescript"
+    ]
+  }
+}

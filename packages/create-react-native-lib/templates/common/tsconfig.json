@@ -1,0 +1,6 @@
+{
+  "extends": "./@tsconfig/react-native-bob/tsconfig.json",
+  "compilerOptions": {
+    "rootDir": "."
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "name": "@rua109/create-react-native-lib",
+  "version": "1.0.0",
+  "description": "Simple set of CLIs to scaffold and build React Native libraries",
+  "author": "rua109 <rua109@gmail.com>",
+  "homepage": "",
+  "license": "ISC",
+  "main": "lib/index.js",
+  "bin": "bin/cli.js",
+  "files": [
+    "lib",
+    "templates"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git@github-rua109:rua109/create-react-app.git"
+  },
+  "scripts": {
+    "build": "babel --extensions .ts,.tsx src --out-dir lib --ignore '**/__tests__/**' --source-maps --delete-dir-on-start",
+    "prepublishOnly": "npm run build"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
+  "devDependencies": {
+    "@babel/cli": "7.23.4",
+    "@babel/core": "7.23.7",
+    "@babel/preset-env": "7.23.8",
+    "@babel/preset-typescript": "7.23.3",
+    "@types/node": "20.11.4"
+  },
+  "dependencies": {
+    "@rua109/create-react-app-utils": "^1.0.1",
+    "dedent": "1.5.1",
+    "kleur": "4.1.5",
+    "ora": "5.4.1",
+    "prompts": "2.4.2"
+  }
+}
