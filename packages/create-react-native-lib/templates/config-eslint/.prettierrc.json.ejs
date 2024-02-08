@@ -1,0 +1,22 @@
+<%_ if (options.linterType === 'standard') { -%>
+{
+    "bracketSpacing": true,
+    "singleQuote": true,
+    "trailingComma": "all",
+    "endOfLine": "lf",
+    "jsxBracketSameLine": false,
+    "printWidth": 80,
+    "tabWidth": 2
+}
+<%_ } -%>
+
+<%_ if (options.linterType === 'airbnb') { -%>
+{
+    "bracketSpacing": true,
+    "singleQuote": true,
+    "trailingComma": "es5",
+    "endOfLine": "auto",
+    "printWidth": 120,
+    "tabWidth": 2
+}
+<%_ } -%>

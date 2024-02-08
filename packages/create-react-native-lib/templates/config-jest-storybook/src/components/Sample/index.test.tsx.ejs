@@ -1,0 +1,10 @@
+import React from 'react';
+import { render } from '@testing-library/react-native';
+
+import Story, { Default } from './index.stories';
+
+describe('Excerpt', () => {
+  it('smoke test - Default', () => {
+    render(<Story.component {...Default.args} />);
+  });
+});

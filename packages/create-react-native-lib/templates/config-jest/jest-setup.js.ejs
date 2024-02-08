@@ -1,0 +1,7 @@
+<%_ if (options.reactVersion === "17") { -%>
+// fixes wierd - Jest has detected the following 1 open handle potentially keeping Jest from exiting
+// on React 17. Not needed for React 18
+// https://github.com/facebook/react/issues/20756#issuecomment-780927519
+
+delete global.MessageChannel;
+<%_ } -%>
