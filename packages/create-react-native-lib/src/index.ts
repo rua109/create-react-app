@@ -83,6 +83,10 @@ const CONFIG_STORYBOOK = path.resolve(
   __dirname,
   "../templates/config-storybook"
 );
+const CONFIG_RN_SVG = path.resolve(
+  __dirname,
+  "../templates/config-react-native-svg"
+);
 const CMD_INIT_GIT = `rm -rf .git && git init && git add . && git commit -m "Initialize project using Create React app"`;
 
 const folder = path.resolve(process.cwd(), repoName);
@@ -129,6 +133,10 @@ const folder = path.resolve(process.cwd(), repoName);
     if (esjOptions.usesStorybook) {
       copyDirApplyingEjsTransforms(CONFIG_JEST_STORYBOOK, folder, esjOptions);
     }
+  }
+
+  if (esjOptions.usesReactNativeSvg) {
+    copyDirApplyingEjsTransforms(CONFIG_RN_SVG, folder, esjOptions);
   }
 
   if (esjOptions.usesGit) {

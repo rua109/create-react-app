@@ -6,8 +6,10 @@
 <%_ if (options.usesStorybook) { -%>
     "storybook-generate": "sb-rn-get-stories",
     "storybook-watch": "sb-rn-watcher",
+    "start": "watchman watch-del-all && npm run storybook-generate && expo start --clear",
+<%_ } else { %>
+    "start": "expo start",
 <%_ } -%>
-    "start": "npm run storybook-generate && expo start",
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web"

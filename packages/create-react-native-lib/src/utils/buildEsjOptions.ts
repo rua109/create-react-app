@@ -11,6 +11,7 @@ export interface EjsOptions {
   reactVersion: "17" | "18" | "none";
   usesTailwind: boolean;
   usesStorybook: boolean;
+  usesReactNativeSvg: boolean;
 }
 
 export interface PromptsProps {
@@ -39,5 +40,6 @@ export default function buildEsjOptions(prompts: PromptsProps): EjsOptions {
     reactVersion: prompts.reactVersion,
     usesTailwind: prompts.tailwind,
     usesStorybook: prompts.storybook,
+    usesReactNativeSvg: prompts.reactVersion === "none" ? false : true,
   };
 }

@@ -38,6 +38,21 @@ const config = {
       return acc;
     }, {}),
   },
+
+  transformer: {
+    ...defaultConfig.transformer,
+
+    // Default assetRegistryPath is @react-native/assets-registry/registry.
+    // This causes stuff like <Image source={require('/path/to/image.jpg')} />
+    // to break in projectRoot with the following error message -
+    // Unable to resolve "@react-native/assets-registry/registry" from "/path/to/image.jpg"
+    // The following should fix that:
+    assetRegistryPath: path.join(
+      __dirname,
+      'node_modules',
+      defaultConfig.transformer.assetRegistryPath,
+    ),
+  },
 };
 
 module.exports = config;
