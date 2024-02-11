@@ -18,6 +18,10 @@
 <%_ if (options.usesReactNativeSvg) { -%>
     "react-native-svg": "14.1.0",
 <%_ } -%>
+<%_ if (options.usesReactNativePaper) { -%>
+    "react-native-paper": "5.12.3",
+    "react-native-safe-area-context": "4.8.2",
+<%_ } -%>
     "expo": "50.0.5",
     "expo-status-bar": "1.11.1",
     "react": "18.2.0",
@@ -33,7 +37,9 @@
     "@storybook/addon-ondevice-actions": "6.5.7",
     "@storybook/addon-ondevice-controls": "6.5.7",
     "@storybook/react-native": "6.5.7",
+  <%_ if (!options.usesReactNativePaper) { -%>
     "react-native-safe-area-context": "4.9.0",
+  <%_ } -%>
 <%_ } -%>
     "@babel/core": "7.23.9",
     "babel-plugin-module-resolver": "5.0.0",

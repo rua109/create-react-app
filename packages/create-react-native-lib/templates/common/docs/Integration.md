@@ -32,6 +32,68 @@ module.exports = {
 };
 ```
 
+### `metro-react-native-babel-preset`
+
+> This section applies to only web projects
+
+Install the following components
+
+```sh
+npm i -D metro-react-native-babel-preset babel-plugin-react-native-web
+```
+
+Next, modify `webpack.common.js` to compile react native packages that are
+not compiled to ES5 before being published.
+
+```js
+const path = require("path");
+const appDirectory = path.resolve(__dirname, ".");
+
+// This is needed for webpack to compile JavaScript.
+// Many OSS React Native packages are not compiled to ES5 before being
+// published. If you depend on uncompiled packages they may cause webpack build
+// errors. To fix this webpack can be configured to compile to the necessary
+// `node_module`.
+const babelLoaderConfiguration = {
+  test: /\.(tsx|ts|jsx|js|mjs)$/,
+  // Add every directory that needs to be compiled by Babel during the build.
+  include: [
+    path.resolve(appDirectory, "src"),
+    // add more components
+  ],
+  use: {
+    loader: "babel-loader",
+    options: {
+      cacheDirectory: true,
+      // The 'metro-react-native-babel-preset' preset is recommended to match React Native's packager
+      presets: ["module:metro-react-native-babel-preset"],
+      // Re-write paths to import only the modules needed by the app
+      plugins: ["react-native-web"],
+    },
+  },
+};
+
+module.exports = {
+  ...
+  module: {
+    rules: [
+-     {
+-       test: /\.(ts|tsx|js|jsx)$/,
+-       exclude: /node_modules/,
+-       use: {
+-         loader: "babel-loader",
+-       },
+-     },
++     babelLoaderConfiguration,
+      {
+        test: /\.(gif|jpe?g|png|svg)$/,
+        type: "asset/resource",
+      },
+    ],
+  },
+}
+```
+
 ### `react-native-svg`
 
 > This section applies to web, expo and react native
@@ -46,3 +108,22 @@ npx install react-native-svg
 
 > For native RN projects, run additional command
 > `cd ios && bundle exec pod install`
+
+### `react-native-paper`
+
+> This section applies to web, expo and react native
+
+Run the following command
+
+```
+npm install react-native-paper react-native-safe-area-context
+```
+
+> For native RN projects, run additional command
+> `cd ios && bundle exec pod install`
+
+For `web` add the following to `babelLoaderConfiguration` include
+
+```js
+path.resolve(appDirectory, "node_modules/react-native-vector-icons/"),
+```

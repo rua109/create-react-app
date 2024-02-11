@@ -66,6 +66,12 @@ const questions = [
     initial: true,
   },
   {
+    type: (prev: any, values: any) => (values.storybook ? "confirm" : null),
+    name: "paper",
+    message: "Include react-native-paper?",
+    initial: true,
+  },
+  {
     type: "confirm",
     name: "git",
     message: "Use Git?",
@@ -93,6 +99,11 @@ const CONFIG_RN_SVG = path.resolve(
   __dirname,
   "../templates/config-react-native-svg"
 );
+const CONFIG_RN_PAPER = path.resolve(
+  __dirname,
+  "../templates/config-react-native-paper"
+);
+
 const CMD_INIT_GIT = `rm -rf .git && git init && git add . && git commit -m "Initialize project using Create React app"`;
 
 const folder = path.resolve(process.cwd(), repoName);
@@ -143,6 +154,10 @@ const folder = path.resolve(process.cwd(), repoName);
 
   if (esjOptions.usesReactNativeSvg) {
     copyDirApplyingEjsTransforms(CONFIG_RN_SVG, folder, esjOptions);
+  }
+
+  if (esjOptions.usesReactNativePaper) {
+    copyDirApplyingEjsTransforms(CONFIG_RN_PAPER, folder, esjOptions);
   }
 
   if (esjOptions.usesGit) {

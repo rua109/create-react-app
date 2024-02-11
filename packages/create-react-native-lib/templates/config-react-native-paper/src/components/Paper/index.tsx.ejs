@@ -1,0 +1,26 @@
+import React, { useState } from 'react';
+import { TextInput, Text <%_ if (options.usesReactNativeSvg) { -%>, Button<%_ } -%> } from 'react-native-paper';
+
+<%_ if (options.usesReactNativeSvg) { -%>
+import Icon from '../Icon';
+<%_ } -%>
+
+/**
+ * Paper component
+ */
+export default function Paper() {
+  const [email, setEmail] = useState('');
+
+  return (
+    <>
+      <Text>Paper Input</Text>
+      <TextInput label="email" value={email} onChangeText={(text) => setEmail(text)} />
+<%_ if (options.usesReactNativeSvg) { -%>
+      <Text>Button</Text>
+      <Button icon={({ size }) => <Icon size={size} />} mode="outlined" onPress={() => console.log('pressed')}>
+        Custom Icon Button
+      </Button>
+<%_ } -%>
+    </>
+  );
+}

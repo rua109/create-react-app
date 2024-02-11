@@ -12,6 +12,7 @@ export interface EjsOptions {
   usesTailwind: boolean;
   usesStorybook: boolean;
   usesReactNativeSvg: boolean;
+  usesReactNativePaper: boolean;
 }
 
 export interface PromptsProps {
@@ -20,6 +21,7 @@ export interface PromptsProps {
   git: boolean;
   jest: boolean;
   expo: boolean;
+  paper: boolean;
   linter: string;
   tailwind: boolean;
   storybook: boolean;
@@ -42,5 +44,6 @@ export default function buildEsjOptions(prompts: PromptsProps): EjsOptions {
     usesTailwind: prompts.tailwind,
     usesStorybook: prompts.storybook,
     usesReactNativeSvg: prompts.svg,
+    usesReactNativePaper: prompts.paper,
   };
 }

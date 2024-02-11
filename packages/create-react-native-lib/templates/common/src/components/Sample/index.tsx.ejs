@@ -5,6 +5,9 @@ import matisee from '../../assets/images/matisse.jpg';
 <%_ if (options.usesReactNativeSvg) { -%>
 import Icon from '../Icon';
 <%_ } -%>
+<%_ if (options.usesReactNativePaper) { -%>
+import Paper from '../Paper';
+<%_ } -%>
 
 /**
  * Sample component
@@ -27,6 +30,11 @@ export default function Sample() {
       <View>
         <Text>Svg Icon</Text>
         <Icon size={40} />
+      </View>
+<%_ } -%>
+<%_ if (options.usesReactNativePaper) { -%>
+      <View>
+        <Paper />
       </View>
 <%_ } -%>
     </View>
