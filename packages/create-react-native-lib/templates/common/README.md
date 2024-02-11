@@ -1,94 +1,58 @@
 # Contributing
 
-## Development workflow
+## Prerequisites
+
+### Watchman
+
+You will need watchman installed on your system to run this application
+
+For windows
+
+```
+PS C:\ choco install watchman
+```
+
+For mac
+
+```
+watchman --version  <-- check if watchman is installed
+brew update
+brew install watchman
+```
+
+### Expo Go
+
+If testing on an actual device, make sure `Expo Go` app is installed on it.
+
+## Getting started
 
 This project contains the following packages:
 
 - The library package in the root directory.
 - An example app in the `example/` directory.
 
-To get started with the project, run `npm i` in the root and example directories to install the required dependencies for each package:
+The example app is an expo app, and launches storybook.
 
-```sh
+```
+cd react-native-design-system
 npm i
 cd example
 npm i
+npm run start  <--- launches storybook
 ```
 
-The [example app](/example/) demonstrates usage of the library. You need to run it to test any changes you make.
-
-It is configured to use the local version of the library, so any changes you make to the library's source code will be reflected in the example app. Changes to the library's JavaScript code will be reflected in the example app without a rebuild, but native code changes will require a rebuild of the example app.
-
-To run commands in `example`; you need to first cd to it
-
-```sh
-cd example
-```
-
-To start the packager:
-
-```sh
-npm run start
-```
-
-To run the example app on Android:
-
-```sh
-npm run android
-```
-
-To run the example app on iOS:
-
-```sh
-npm run ios
-```
-
-To run the example app on Web:
-
-```sh
-npm run web
-```
+To view the storybook on an actual device; make sure the `Expo Go` app is installed on the device.
 
 ## Adding a new dependency
 
-To add a new dependency do
+When adding a library `dependency` use the following command to install the version that is compatible with expo:
 
 ```
 npx expo install <package_name>
 ```
 
-# Integration
+> If this package requries a react native link step (i.e. `pod install`); rather than installing it as a `dependency`, add it as a `peerDependency` and `devDependency`. Otherwise it will not work when integrating with react native apps.
 
-## Steps to import this library into another library package
+## Integrating with an app
 
-To use this library in another react native package, simply add it to its peer dependency and dev dependency.
-
-## Steps to import this library into a web package
-
-Note that this libraries are currently only supported on packages using the `babel` transpiler. There is no support for `swc`
-
-To import this library into a web package using React18; first install the following dependencies -
-
-```
-npm i react-native react-native-web
-```
-
-> Note that since v0.69 react native depends on React18; so if you wish to use it in a web package still using React17, you will have to install an older version of react native
->
-> npm i react-native@0.68.7 react-native-web@0.18.12
-
-Next, configure your module bundler to alias the package to react-native. If you are using `webpack`; the configuration looks like follows:
-
-```js
-// webpack.config.js
-module.exports = {
-  // ...the rest of your config
-  extensions: [..., ".web.js", ".js"],
-
-  resolve: {
-    alias: {
-      "react-native$": "react-native-web",
-    },
-  },
-};
-```
+See `docs/Integration.md`
