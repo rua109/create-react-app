@@ -1,6 +1,6 @@
 {
   "name": "@rua109/create-react-native-lib",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "Simple set of CLIs to scaffold and build React Native libraries",
   "author": "rua109 <rua109@gmail.com>",
   "homepage": "",
