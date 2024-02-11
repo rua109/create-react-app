@@ -1,12 +1,12 @@
-## Steps to import this library into another library package
+## Integration steps
 
-To use this library in another react native package, simply add it to its peer dependency and dev dependency.
+### `react-native` and `react-native-web`
 
-## Steps to import this library into a web package
+> This section applies to only web projects
 
 Note that this libraries are currently only supported on packages using the `babel` transpiler. There is no support for `swc`
 
-To import this library into a web package using React18; first install the following dependencies -
+To import this library into a web project using React18; first install the following dependencies -
 
 ```
 npm i react-native react-native-web
@@ -31,3 +31,18 @@ module.exports = {
   },
 };
 ```
+
+### `react-native-svg`
+
+> This section applies to web, expo and react native
+
+react-native-svg provides SVG support to React Native on iOS, Android, macOS, Windows, and a compatibility layer for the web.
+
+To install do -
+
+```
+npx install react-native-svg
+```
+
+> For native RN projects, run additional command
+> `cd ios && bundle exec pod install`

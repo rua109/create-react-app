@@ -16,6 +16,7 @@ export interface EjsOptions {
 
 export interface PromptsProps {
   name: string;
+  svg: boolean;
   git: boolean;
   jest: boolean;
   expo: boolean;
@@ -40,6 +41,6 @@ export default function buildEsjOptions(prompts: PromptsProps): EjsOptions {
     reactVersion: prompts.reactVersion,
     usesTailwind: prompts.tailwind,
     usesStorybook: prompts.storybook,
-    usesReactNativeSvg: prompts.reactVersion === "none" ? false : true,
+    usesReactNativeSvg: prompts.svg,
   };
 }

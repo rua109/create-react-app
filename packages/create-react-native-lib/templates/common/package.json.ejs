@@ -28,6 +28,9 @@
   "author": "",
   "license": "ISC",
   "peerDependencies": {
+<%_ if (options.usesReactNativeSvg) { -%>
+    "react-native-svg": ">=14.1.0",
+<%_ } -%>
 <%_ if (options.reactVersion === "18") { -%>
     "react": ">=18.2.0",
     "react-native": ">=0.73.3"
@@ -36,13 +39,11 @@
     "react-native": ">=0.68.7"
 <%_ } -%>
   },
-  "dependencies": {
-<%_ if (options.usesReactNativeSvg) { -%>
-    "react-native-svg": "14.1.0"
-<%_ } -%>
-  },
   "devDependencies": {
     "@types/node": "20.11.16",
+<%_ if (options.usesReactNativeSvg) { -%>
+    "react-native-svg": "14.1.0",
+<%_ } -%>
 <%_ if (options.reactVersion === "18") { -%>
     "@types/react": "18.2.52",
     "react": "18.2.0",

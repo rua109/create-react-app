@@ -60,6 +60,12 @@ const questions = [
     initial: true,
   },
   {
+    type: (prev: any, values: any) => (values.storybook ? "confirm" : null),
+    name: "svg",
+    message: "Include react-native-svg?",
+    initial: true,
+  },
+  {
     type: "confirm",
     name: "git",
     message: "Use Git?",
