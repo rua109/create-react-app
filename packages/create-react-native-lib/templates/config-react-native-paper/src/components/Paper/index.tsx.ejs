@@ -14,10 +14,22 @@ export default function Paper() {
   return (
     <>
       <Text>Paper Input</Text>
-      <TextInput label="email" value={email} onChangeText={(text) => setEmail(text)} />
+      <TextInput
+        label="email"
+        value={email}
+        onChangeText={(text) => {
+          setEmail(text);
+        }}
+      />
 <%_ if (options.usesReactNativeSvg) { -%>
-      <Text>Button</Text>
-      <Button icon={({ size }) => <Icon size={size} />} mode="outlined" onPress={() => console.log('pressed')}>
+      <Button
+        icon={({ size }) => <Icon size={size} />}
+        mode="outlined"
+        onPress={() => {
+          /* eslint-disable-next-line no-console */
+          console.log('pressed');
+        }}
+      >
         Custom Icon Button
       </Button>
 <%_ } -%>

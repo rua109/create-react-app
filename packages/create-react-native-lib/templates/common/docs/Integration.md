@@ -109,18 +109,22 @@ npx install react-native-svg
 > For native RN projects, run additional command
 > `cd ios && bundle exec pod install`
 
-### `react-native-paper`
+### `react-native-safe-area-context`
 
 > This section applies to web, expo and react native
 
 Run the following command
 
 ```
-npm install react-native-paper react-native-safe-area-context
+npm install react-native-safe-area-context
 ```
 
 > For native RN projects, run additional command
 > `cd ios && bundle exec pod install`
+
+### `react-native-paper`
+
+> This section applies to only web projects
 
 For `web` add the following to `babelLoaderConfiguration` include
 

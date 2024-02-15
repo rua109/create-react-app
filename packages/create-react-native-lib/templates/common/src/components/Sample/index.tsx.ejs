@@ -7,6 +7,8 @@ import Icon from '../Icon';
 <%_ } -%>
 <%_ if (options.usesReactNativePaper) { -%>
 import Paper from '../Paper';
+
+const URI = 'https://reactnative.dev/img/tiny_logo.png';
 <%_ } -%>
 
 /**
@@ -21,10 +23,7 @@ export default function Sample() {
       </View>
       <View>
         <Text>Dynamic Asset</Text>
-        <Image
-          source={{ uri: 'https://reactnative.dev/img/tiny_logo.png' }}
-          style={{ width: 100, height: 100 }}
-        />
+        <Image source={{ uri: URI }} style={{ width: 100, height: 100 }} />
       </View>
 <%_ if (options.usesReactNativeSvg) { -%>
       <View>
