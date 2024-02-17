@@ -32,6 +32,8 @@ module.exports = {
 };
 ```
 
+Note that `.web.js` must come before `.js`
+
 ### `metro-react-native-babel-preset`
 
 > This section applies to only web projects

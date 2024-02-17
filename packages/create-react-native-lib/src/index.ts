@@ -81,6 +81,10 @@ const questions = [
 
 const COMMON_FILES = path.resolve(__dirname, "../templates/common");
 const CONFIG_EXPO = path.resolve(__dirname, "../templates/config-expo");
+const CONFIG_EXAMPLE_REACT17 = path.resolve(
+  __dirname,
+  "../templates/config-example-react17"
+);
 const CONFIG_ESLINT = path.resolve(__dirname, "../templates/config-eslint");
 const CONFIG_JEST = path.resolve(__dirname, "../templates/config-jest");
 const CONFIG_NO_STORYBOOK = path.resolve(
@@ -136,6 +140,13 @@ const folder = path.resolve(process.cwd(), repoName);
 
     if (esjOptions.usesStorybook) {
       copyDirApplyingEjsTransforms(CONFIG_STORYBOOK, folder, esjOptions);
+      if (esjOptions.reactVersion === "17") {
+        copyDirApplyingEjsTransforms(
+          CONFIG_EXAMPLE_REACT17,
+          folder,
+          esjOptions
+        );
+      }
     } else {
       copyDirApplyingEjsTransforms(CONFIG_NO_STORYBOOK, folder, esjOptions);
     }

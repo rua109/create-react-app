@@ -30,6 +30,7 @@ This project contains the following packages:
 
 - The library package in the root directory.
 - An example app in the `example/` directory.
+- A react17 compat app in `example-react17/` directory.
 
 The example app is an expo app, and launches storybook.
 
@@ -39,6 +40,10 @@ npm i
 cd example
 npm i
 npm run start  <--- launches storybook
+cd ..
+nd example-react17
+npm i
+npm run start  <--- launches storybook (react17)
 ```
 
 To view the storybook on an actual device; make sure the `Expo Go` app is installed on the device.

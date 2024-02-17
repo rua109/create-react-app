@@ -1,0 +1,77 @@
+const path = require('path');
+const pak = require('../../package.json');
+const modules = Object.keys({ ...pak.peerDependencies });
+
+import type { StorybookConfig } from "@storybook/react-webpack5";
+
+const config: StorybookConfig = {
+  stories: ['../../src/**/*.stories.@(js|jsx|mjs|ts|tsx)'],
+  addons: [
+    "@storybook/addon-links",
+    "@storybook/addon-essentials",
+    "@storybook/addon-onboarding",
+    "@storybook/addon-interactions",
+    "@storybook/addon-styling-webpack",
+    {
+      name: "@storybook/addon-styling-webpack",
+
+      options: {
+        rules: [
+          {
+            test: /\.(css|s[ac]ss)$/i,
+            use: [
+              "style-loader", //3. Inject styles into DOM
+              "css-loader", //2. Turns css into commonjs
+            ],
+          },
+        ],
+      },
+    },
+    "@storybook/addon-themes",
+  ],
+  framework: {
+    name: "@storybook/react-webpack5",
+    options: {
+      builder: {
+        useSWC: false,
+      },
+    },
+  },
+  babel(config) {
+    const newConfig = {
+      presets: ['@babel/preset-typescript', '@babel/preset-react', '@babel/preset-env'],
+      plugins: [['@babel/transform-runtime']],
+    };
+    return newConfig;
+  },
+  webpack(config) {
+    config.resolve!.modules!.push(path.join(__dirname, '../node_modules'));
+    config.resolve!.modules!.push(path.join(__dirname, '../../node_modules'));
+
+    config.resolve!.extensions = ['.tsx', '.ts', '.jsx', '.web.js', '.js', '.json'];
+    config.resolve!.alias!['react-native$'] = 'react-native-web';
+
+    for (let i = 0; i < modules.length; ++i) {
+      config.resolve!.alias![modules[i]] = path.join(__dirname, '../node_modules', modules[i]);
+    }
+
+    config.module!.rules!.push({
+      test: /.[tj]sx?$/,
+      include: [path.resolve(__dirname, '../../node_modules/react-native-vector-icons/')],
+      use: {
+        loader: 'babel-loader',
+        options: {
+          cacheDirectory: true,
+          presets: ['module:metro-react-native-babel-preset'],
+          // Re-write paths to import only the modules needed by the app
+          plugins: ['react-native-web'],
+        },
+      },
+    });
+    return config;
+  },
+  docs: {
+    autodocs: "tag",
+  },
+};
+export default config;
