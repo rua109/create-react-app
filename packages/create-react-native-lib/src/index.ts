@@ -37,6 +37,13 @@ const questions = [
     initial: true,
   },
   {
+    type: (prev: any, values: any) =>
+      values.reactVersion === "17" ? "confirm" : null,
+    name: "compat",
+    message: "Create example-react17 folder?",
+    initial: false,
+  },
+  {
     type: (prev: any, values: any) => (values.expo ? "confirm" : null),
     name: "storybook",
     message: "Use Storybooks?",
@@ -140,16 +147,13 @@ const folder = path.resolve(process.cwd(), repoName);
 
     if (esjOptions.usesStorybook) {
       copyDirApplyingEjsTransforms(CONFIG_STORYBOOK, folder, esjOptions);
-      if (esjOptions.reactVersion === "17") {
-        copyDirApplyingEjsTransforms(
-          CONFIG_EXAMPLE_REACT17,
-          folder,
-          esjOptions
-        );
-      }
     } else {
       copyDirApplyingEjsTransforms(CONFIG_NO_STORYBOOK, folder, esjOptions);
     }
+  }
+
+  if (esjOptions.usesCompat) {
+    copyDirApplyingEjsTransforms(CONFIG_EXAMPLE_REACT17, folder, esjOptions);
   }
 
   if (esjOptions.usesLinter) {

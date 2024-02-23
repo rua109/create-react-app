@@ -37,6 +37,11 @@ const config = {
       acc[name] = path.join(__dirname, 'node_modules', name);
       return acc;
     }, {}),
+
+
+    // fixes following error in android -
+    // Unhandled promise rejection [RangeError: Maximum call stack size exceeded (native stack depth)]
+    resolverMainFields: ['sbmodern', ...defaultConfig.resolver.resolverMainFields],
   },
 
   transformer: {

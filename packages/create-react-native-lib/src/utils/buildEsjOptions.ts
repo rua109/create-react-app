@@ -5,6 +5,7 @@ export interface EjsOptions {
   usesExpo: boolean;
   usesYarn: boolean;
   usesReact: boolean;
+  usesCompat: boolean;
   usesLinter: boolean;
   linterType: string;
   transpiler: "babel" | "swc";
@@ -22,6 +23,7 @@ export interface PromptsProps {
   jest: boolean;
   expo: boolean;
   paper: boolean;
+  compat: boolean;
   linter: string;
   tailwind: boolean;
   storybook: boolean;
@@ -37,6 +39,7 @@ export default function buildEsjOptions(prompts: PromptsProps): EjsOptions {
     usesYarn: prompts.expo,
     usesExpo: prompts.expo,
     usesReact: prompts.reactVersion === "none" ? false : true,
+    usesCompat: prompts.compat,
     usesLinter: prompts.linter === "none" ? false : true,
     linterType: prompts.linter,
     transpiler: prompts.transpiler,
